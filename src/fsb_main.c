@@ -60,6 +60,7 @@ set_opt(int argc, char *argv[])
     char arg_v[256] ;
     int pct = 0 ;
     int ret = 0 ;
+    sfxini_t *sfxini ;
     while ((flag = getopt(argc, argv, "c:dhis")) != EOF) {
         switch(flag) {
         case 'i': 
@@ -74,7 +75,8 @@ set_opt(int argc, char *argv[])
             }
             break ;
         case 's': 
-            strcpy(smg, "the current [space-balancer] value is: \n")    ;
+            sfxini = sfxini__read() ;
+            sprintf(smg, "the current [space-balancer] value is: %d\n",sfxini->fsb_green_zone)   ; 
             fprintf(stdout, smg) ;
             break ;
         case 'c': 
